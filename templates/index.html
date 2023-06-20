@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <title>
+        Log in
+    </title>
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        background: #ffffff;
+        font-family: "Helvetica Neue", Arial, Sans-Serif;
+        background-image: url(/static/img/backimage.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: 100% ;
+    }
+
+    html .login-wrap {
+        position: relative;
+        margin: 0 auto;
+        width: 500px;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255,0.9);
+        box-shadow: 3px 3px 10px #333;
+        padding: 30px 15px;
+        margin-top: 280px;
+        height: 400px;
+    }
+
+    html .login-wrap h2 {
+        text-align: center;
+        font-weight: 200;
+        font-size: 2em;
+        margin-top: 10px;
+        color: #34495e;
+    }
+
+    html .login-wrap .form {
+        padding-top: 20px;
+    }
+
+    html .login-wrap .form input[type="text"],
+    html .login-wrap .form input[type="password"],
+    html .login-wrap .form button {
+        width: 80%;
+        margin-left: 10%;
+        margin-bottom: 25px;
+        height: 40px;
+        border-radius: 5px;
+        outline: 0;
+    }
+
+    html .login-wrap .form input[type="text"],
+    html .login-wrap .form input[type="password"] {
+        border: 1px solid #bbb;
+        padding: 0 0 0 10px;
+        font-size: 14px;
+    }
+
+    html .login-wrap .form input[type="text"]:focus,
+    html .login-wrap .form input[type="password"]:focus {
+        border: 1px solid #3498db;
+    }
+
+    html .login-wrap .form a {
+        text-align: center;
+        font-size: 15px;
+        color: #3498db;
+    }
+
+    html .login-wrap .form a p {
+        padding-bottom: 10px;
+    }
+
+    html .login-wrap .form button {
+        background: #71e9ad;
+        border: none;
+        color: white;
+        font-size: 18px;
+        font-weight: 200;
+        cursor: pointer;
+        transition: box-shadow 0.4s ease;
+    }
+
+    html .login-wrap .form button:hover {
+        box-shadow: 1px 1px 5px #555;
+    }
+
+    html .login-wrap .form button:active {
+        box-shadow: 1px 1px 7px #222;
+    }
+
+    html .login-wrap:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: -webkit-linear-gradient(left, #27ae60 0%, #27ae60 20%, #8e44ad 20%, #8e44ad 40%, #3498db 40%, #3498db 60%, #e74c3c 60%, #e74c3c 80%, #f1c40f 80%, #f1c40f 100%);
+        background: -moz-linear-gradient(left, #27ae60 0%, #27ae60 20%, #8e44ad 20%, #8e44ad 40%, #3498db 40%, #3498db 60%, #e74c3c 60%, #e74c3c 80%, #f1c40f 80%, #f1c40f 100%);
+        height: 5px;
+        border-radius: 5px 5px 0 0;
+    }
+</style>
+
+<body>
+    <div class="login-wrap" >
+        <h2>Login</h2><br>
+        {% if messages %}
+        <div style="width: 80%;background-color: rgba(255, 0, 0, 0.5);margin-left: 47px; height: 50px;text-align: center;padding: 15px;border-radius: 10px;" role="alert" class="alert alert-primary">
+            {% for messages in messages %}
+            <label style="color: white;font-weight: bolder;font-size: 20px;">{{messages}}</label>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <form class="form" action="{% url 'login' %}" method="post">
+        {% csrf_token %}    
+            <input type="text" placeholder="Username" name="un" required />
+            <input type="password" placeholder="Password" name="pw" required />
+            <button type="submit"> Sign in </button>
+            <a href="{% url 'signup' %}">
+                <p> Don't have an account? Register </p>
+            </a>
+        </form>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    
+    
+</body>
+
+</html>
